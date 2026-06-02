@@ -6,201 +6,90 @@
 <title>专属心意</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    overflow:hidden;
-    font-family:"Microsoft YaHei";
-    background:linear-gradient(135deg,#ff9eb5,#ffd4dd);
-    height:100vh;
-}
-
-.container{
-    position:relative;
-    z-index:2;
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
-
-.photo{
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    object-fit:cover;
-    border:5px solid white;
-    box-shadow:0 0 25px rgba(255,255,255,.7);
-    animation:float 3s infinite ease-in-out;
-}
-
-h1{
-    margin-top:25px;
-    color:white;
-    font-size:34px;
-}
-
-.text{
-    margin-top:20px;
-    color:white;
-    font-size:20px;
-    width:85%;
-    line-height:1.8;
-    min-height:90px;
-}
-
-.tip{
-    margin-top:20px;
-    color:white;
-    opacity:.8;
-}
-
-.heart{
-    position:absolute;
-    color:#ff4d6d;
-    animation:rise linear forwards;
-}
-
-@keyframes rise{
-    from{
-        transform:translateY(0) scale(0.5);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-100vh) scale(1.5);
-        opacity:0;
-    }
-}
-
-@keyframes float{
-    0%{transform:translateY(0)}
-    50%{transform:translateY(-12px)}
-    100%{transform:translateY(0)}
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{overflow:hidden;font-family:"Microsoft YaHei";background:linear-gradient(135deg,#ff9eb5,#ffd4dd);height:100vh;}
+.container{position:relative;z-index:2;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;}
+.photo{width:180px;height:180px;border-radius:50%;object-fit:cover;border:5px solid white;box-shadow:0 0 25px rgba(255,255,255,.7);animation:float 3s infinite ease-in-out;}
+h1{margin-top:25px;color:white;font-size:34px;}
+.text{margin-top:20px;color:white;font-size:20px;width:85%;line-height:1.8;min-height:90px;}
+.tip{margin-top:20px;color:white;opacity:.8;}
+.heart{position:absolute;color:#ff4d6d;animation:rise linear forwards;}
+@keyframes rise{from{transform:translateY(0) scale(0.5);opacity:1;}to{transform:translateY(-100vh) scale(1.5);opacity:0;}}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
 </style>
 </head>
 
 <body>
 
-<!-- 修改这里即可 -->
 <script>
+// ======= 客户参数修改这里 =======
 const USER_NAME = "小雨";
-
 const MESSAGE = [
 "第一次认真准备这份心意",
 "希望你打开的时候会笑",
 "想把温柔和浪漫都送给你",
 "未来的故事，希望有你"
 ];
-
-const PHOTO = "photo.jpg"; 
-const MUSIC = "music.mp3";
+const PHOTO = "photo.jpg";       // 上传到仓库的头像
+const MUSIC = "youwone.mp3";     // 上传到仓库的音频
+// ===============================
 </script>
 
 <div class="container">
-
 <img class="photo" id="photo">
-
 <h1 id="title"></h1>
-
 <div class="text" id="typing"></div>
-
-<div class="tip">
-❤️ 微信打开效果更好 ❤️
-</div>
-
+<div class="tip">❤️ 点击屏幕播放音乐，微信打开效果最佳 ❤️</div>
 </div>
 
 <audio id="bgm" loop>
-<source id="musicSource">
+<source id="musicSource" type="audio/mpeg">
 </audio>
 
 <script>
-
-document.getElementById("title").innerText =
-USER_NAME + "，送给你";
-
+// 初始化元素
+document.getElementById("title").innerText = USER_NAME + "，送给你";
 document.getElementById("photo").src = PHOTO;
-
 document.getElementById("musicSource").src = MUSIC;
 
+// 点击播放音乐
 document.body.addEventListener("click",()=>{
     document.getElementById("bgm").play();
 },{once:true});
 
-let textIndex=0;
-let charIndex=0;
-
+// 打字机效果
+let textIndex=0, charIndex=0;
 function typeWriter(){
-
-    const box =
-    document.getElementById("typing");
-
+    const box = document.getElementById("typing");
     if(textIndex < MESSAGE.length){
-
-        let current =
-        MESSAGE[textIndex];
-
-        box.innerHTML =
-        current.substring(0,charIndex);
-
+        let current = MESSAGE[textIndex];
+        box.innerHTML = current.substring(0,charIndex);
         charIndex++;
-
         if(charIndex > current.length){
-
             setTimeout(()=>{
                 textIndex++;
                 charIndex=0;
                 box.innerHTML="";
             },1500);
-
         }
-
         setTimeout(typeWriter,120);
-
     }
-
 }
-
 typeWriter();
 
+// 飘心效果
 function createHeart(){
-
-    const heart =
-    document.createElement("div");
-
+    const heart = document.createElement("div");
     heart.className="heart";
-
     heart.innerHTML="❤";
-
-    heart.style.left =
-    Math.random()*100+"vw";
-
+    heart.style.left = Math.random()*100+"vw";
     heart.style.bottom="-30px";
-
-    heart.style.fontSize =
-    Math.random()*25+15+"px";
-
-    heart.style.animationDuration =
-    Math.random()*4+4+"s";
-
+    heart.style.fontSize = Math.random()*25+15+"px";
+    heart.style.animationDuration = Math.random()*4+4+"s";
     document.body.appendChild(heart);
-
-    setTimeout(()=>{
-        heart.remove();
-    },7000);
-
+    setTimeout(()=>{heart.remove();},7000);
 }
-
 setInterval(createHeart,300);
-
 </script>
 
 </body>
