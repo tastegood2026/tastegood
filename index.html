@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
 
 <meta charset="UTF-8">
@@ -20,20 +19,19 @@ box-sizing:border-box;
 
 body{
 
-width:100vw;
-height:100vh;
-
-overflow:hidden;
-
 font-family:
 "Microsoft YaHei";
 
 background:
 linear-gradient(
-135deg,
-#f6a8ba,
-#f4c6d2
+180deg,
+#f7a9bd,
+#f6bfd0
 );
+
+min-height:100vh;
+
+overflow-x:hidden;
 
 position:relative;
 }
@@ -44,19 +42,17 @@ position:relative;
 
 z-index:5;
 
-height:100vh;
-
 display:flex;
 
 flex-direction:column;
 
-justify-content:center;
-
 align-items:center;
 
-text-align:center;
+padding:
 
-padding:20px;
+60px 20px
+120px;
+
 }
 
 .photo{
@@ -72,52 +68,110 @@ object-fit:cover;
 border:6px solid white;
 
 box-shadow:
-0 0 25px rgba(255,255,255,.7);
+0 0 30px rgba(255,255,255,.8);
 
 animation:
-float 3s infinite ease-in-out;
+float 3s infinite;
 }
 
-h1{
+@keyframes float{
+
+0%{transform:translateY(0)}
+
+50%{transform:translateY(-10px)}
+
+100%{transform:translateY(0)}
+
+}
+
+.title{
 
 margin-top:30px;
 
-font-size:58px;
+font-size:55px;
+
+font-weight:bold;
 
 color:white;
 
-font-weight:bold;
+text-align:center;
+
+text-shadow:
+0 0 20px rgba(255,255,255,.3);
+
+}
+
+.card{
+
+margin-top:35px;
+
+width:min(90%,800px);
+
+padding:
+
+35px;
+
+background:
+
+rgba(
+255,
+255,
+255,
+0.18
+);
+
+backdrop-filter:
+blur(12px);
+
+border:
+
+1px solid rgba(
+255,
+255,
+255,
+0.4
+);
+
+border-radius:
+
+35px;
+
+box-shadow:
+
+0 0 35px rgba(
+255,
+255,
+255,
+0.15
+);
+
 }
 
 .text{
 
-margin-top:30px;
+font-size:26px;
 
-font-size:28px;
+line-height:2;
 
 color:white;
 
-line-height:1.8;
+font-weight:500;
 
-min-height:60px;
-
-width:85%;
-
-font-weight:600;
+white-space:pre-line;
 
 text-shadow:
-0 0 10px rgba(0,0,0,.1);
+0 0 8px rgba(0,0,0,.08);
+
 }
 
-.tip{
+.music-tip{
 
-margin-top:40px;
+margin-top:30px;
 
-font-size:18px;
+font-size:22px;
 
 color:white;
 
-opacity:.9;
 }
 
 .heart{
@@ -127,9 +181,10 @@ position:absolute;
 pointer-events:none;
 
 animation:
+
 rise linear forwards;
 
-color:#ff5a7b;
+color:#ff5d80;
 }
 
 @keyframes rise{
@@ -138,34 +193,20 @@ from{
 
 transform:
 translateY(0)
-scale(.6);
+scale(.5);
 
 opacity:1;
+
 }
 
 to{
 
 transform:
-translateY(-110vh)
+translateY(-120vh)
 scale(1.5);
 
 opacity:0;
-}
 
-}
-
-@keyframes float{
-
-0%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-12px);
-}
-
-100%{
-transform:translateY(0);
 }
 
 }
@@ -178,47 +219,80 @@ transform:translateY(0);
 
 <script>
 
-/* ===== 修改这里 ===== */
+const USER_NAME =
+"小雨"
 
-const USER_NAME = "闫美怡"
+const PHOTO =
+"photo.jpg"
 
-const MESSAGE = [
+const MUSIC =
+"youwone.mp3"
 
-"第一次认真准备这份心意",
+const CONTENT = `
 
-"希望你打开的时候会笑",
+提笔写下这些话的时候，窗外的风似乎都温柔了几分，而我的脑海里，反反复复浮现的，都是你的模样。
 
-"想把温柔和浪漫都送给你",
+我从来没想过，一个人的出现，会让原本平淡的日子开始有了期待。
 
-"未来的故事，希望有你"
+会在清晨醒来的时候，下意识想和你说一句早安；
 
-]
+会在看到好看的晚霞、遇见有趣的事情、吃到好吃的东西时，第一时间想分享给你；
 
-const PHOTO = "photo.jpg"
+也会在人群里，下意识寻找你的身影，然后因为一个眼神、一句回应，让心跳悄悄乱了节奏。
 
-const MUSIC = "youwone.mp3"
+这份喜欢，没有轰轰烈烈的开场，也没有刻意制造的浪漫。
 
-/* ================= */
+它是在一次次聊天里，在一句句关心里，在那些细碎又平常的瞬间里，慢慢生根发芽，然后不知不觉长成了藏不住的在意。
+
+我喜欢和你聊天时的轻松，喜欢你笑起来时眉眼弯弯的样子，也喜欢那种即使安静下来，也不会觉得尴尬的安心。
+
+你像一束温柔的光，悄悄照进我的生活，把原本普通的日子，都染上了期待的颜色。
+
+我不懂什么才算最完美的爱情，也不会说太多华丽动听的话。
+
+我只知道，我想把所有的温柔和偏爱都留给你，想陪你走过春夏秋冬，想和你一起经历往后平凡却珍贵的每一天。
+
+不用急着回应，也不用因为这些话有压力。
+
+我只是想认认真真地告诉你：
+
+喜欢你这件事，
+
+不是一时兴起，
+
+而是在无数个平凡瞬间里，
+
+越来越确定的答案。
+
+`
 
 </script>
 
 <div class="container">
 
 <img
-class="photo"
-id="photo">
+src="photo.jpg"
+class="photo">
 
-<h1 id="title"></h1>
+<div class="title">
 
-<div
-class="text"
-id="typing">
+小雨，送给你
 
 </div>
 
-<div class="tip">
+<div class="card">
 
-❤️ 点击屏幕播放音乐❤️
+<div
+class="text"
+id="content">
+
+</div>
+
+</div>
+
+<div class="music-tip">
+
+❤️ 点击页面播放音乐 ❤️
 
 </div>
 
@@ -229,29 +303,18 @@ id="bgm"
 loop>
 
 <source
-id="musicSource"
-type="audio/mpeg">
+src="youwone.mp3">
 
 </audio>
 
 <script>
 
-/* 初始化 */
-
 document
-.getElementById("photo")
-.src = PHOTO
-
-document
-.getElementById("title")
-.innerHTML =
-USER_NAME + "，送给你"
-
-document
-.getElementById("musicSource")
-.src = MUSIC
-
-/* 点击播放音乐 */
+.getElementById(
+"content"
+)
+.innerText =
+CONTENT
 
 document.body
 .addEventListener(
@@ -261,7 +324,9 @@ document.body
 ()=>{
 
 document
-.getElementById("bgm")
+.getElementById(
+"bgm"
+)
 .play()
 
 },
@@ -270,99 +335,47 @@ document
 
 )
 
-/* 文字轮播 */
-
-let msgIndex = 0
-
-function showText(){
-
-const box =
-document.getElementById(
-"typing"
-)
-
-box.style.opacity=0
-
-setTimeout(()=>{
-
-box.innerHTML =
-MESSAGE[msgIndex]
-
-box.style.opacity=1
-
-msgIndex++
-
-if(
-msgIndex >=
-MESSAGE.length
-){
-
-msgIndex = 0
-
-}
-
-},300)
-
-}
-
-showText()
-
-setInterval(
-
-showText,
-
-2500
-
-)
-
-/* 飘心 */
-
 function heart(){
 
-let h =
-document
-.createElement(
+let h=
+document.createElement(
 "div"
 )
 
-h.className =
+h.className=
 "heart"
 
-h.innerHTML =
+h.innerHTML=
 "❤"
 
-h.style.left =
-Math.random()*100
-+"vw"
+h.style.left=
+Math.random()*100+
+"vw"
 
-h.style.bottom =
+h.style.bottom=
 "-30px"
 
-h.style.fontSize =
-Math.random()*30
-+20+"px"
+h.style.fontSize=
+Math.random()*35+
+15+"px"
 
-h.style.animationDuration =
-Math.random()*4
-+4+"s"
+h.style.animationDuration=
+Math.random()*5+
+4+"s"
 
 document.body
 .appendChild(h)
 
-setTimeout(()=>{
-
-h.remove()
-
-},7000)
+setTimeout(
+()=>h.remove(),
+8000
+)
 
 }
 
 setInterval(
-
 heart,
-
-300
-
+280
 )
 
 </script>
