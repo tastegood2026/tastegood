@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>专属心意</title>
 
 <style>
@@ -18,18 +15,24 @@ box-sizing:border-box;
 
 body{
 
+overflow:hidden;
+
+height:100vh;
+
 font-family:"Microsoft YaHei";
 
 background:
 linear-gradient(
-180deg,
+135deg,
 #f6a9bf,
-#f7c8d5
+#f5bfd0
 );
 
-min-height:100vh;
+display:flex;
 
-overflow-x:hidden;
+justify-content:center;
+
+align-items:center;
 
 position:relative;
 
@@ -47,49 +50,47 @@ flex-direction:column;
 
 align-items:center;
 
-padding:60px 20px 120px;
+text-align:center;
+
+padding:20px;
+
+width:90%;
 
 }
 
 .photo{
 
-width:190px;
+width:180px;
 
-height:190px;
+height:180px;
 
 border-radius:50%;
 
 object-fit:cover;
 
-border:6px solid rgba(255,255,255,.95);
+border:6px solid white;
 
 box-shadow:
-0 0 35px rgba(255,255,255,.8);
+0 0 30px rgba(255,255,255,.8);
 
 animation:
-floating 3s infinite ease-in-out;
+float 3s infinite;
 
 }
 
-@keyframes floating{
+@keyframes float{
 
-0%{
-transform:translateY(0px)
-}
+0%{transform:translateY(0)}
 
-50%{
-transform:translateY(-12px)
-}
+50%{transform:translateY(-10px)}
 
-100%{
-transform:translateY(0px)
-}
+100%{transform:translateY(0)}
 
 }
 
 .title{
 
-margin-top:30px;
+margin-top:25px;
 
 font-size:58px;
 
@@ -97,69 +98,49 @@ font-weight:bold;
 
 color:white;
 
-text-align:center;
-
-text-shadow:
-0 0 20px rgba(255,255,255,.25);
-
 }
 
-.card{
+.textbox{
 
-margin-top:40px;
+margin-top:35px;
 
-width:min(92%,820px);
+width:min(90%,850px);
 
 padding:35px;
+
+min-height:220px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 border-radius:35px;
 
 background:
-
 rgba(
-255,
-255,
-255,
-0.16
-);
-
-backdrop-filter:
-blur(18px);
-
-border:
-
-1px solid rgba(
-255,
-255,
-255,
-0.35
-);
-
-box-shadow:
-
-0 0 40px rgba(
 255,
 255,
 255,
 0.15
 );
 
-}
-
-.text{
-
-font-size:24px;
-
-line-height:2.1;
+backdrop-filter:
+blur(15px);
 
 color:white;
 
-white-space:pre-line;
+font-size:28px;
 
-font-weight:500;
+line-height:1.9;
+
+font-weight:600;
 
 text-shadow:
-0 0 8px rgba(0,0,0,.08);
+0 0 10px rgba(0,0,0,.08);
+
+transition:.5s;
 
 }
 
@@ -171,8 +152,6 @@ font-size:20px;
 
 color:white;
 
-opacity:.95;
-
 }
 
 .heart{
@@ -181,7 +160,7 @@ position:absolute;
 
 pointer-events:none;
 
-color:#ff5d82;
+color:#ff5b82;
 
 animation:
 rise linear forwards;
@@ -204,7 +183,7 @@ to{
 
 transform:
 translateY(-120vh)
-scale(1.5);
+scale(1.6);
 
 opacity:0;
 
@@ -212,114 +191,64 @@ opacity:0;
 
 }
 
-@media(max-width:768px){
-
-.title{
-
-font-size:40px;
-
-}
-
-.text{
-
-font-size:18px;
-
-line-height:1.9;
-
-}
-
-.photo{
-
-width:150px;
-
-height:150px;
-
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
 <script>
 
-const USER_NAME =
-"菲菲"
+const USER_NAME="乖乖"
 
-const PHOTO =
-"photo.jpg"
+const TEXTS=[
 
-const MUSIC =
-"youwone.mp3"
+"提笔写下这些话的时候，窗外的风似乎都温柔了几分，而我的脑海里，反反复复浮现的，都是你的模样。",
 
-const CONTENT = `
+"我从来没想过，一个人的出现，会让原本平淡的日子开始有了期待。",
 
-提笔写下这些话的时候，窗外的风似乎都温柔了几分，而我的脑海里，反反复复浮现的，都是你的模样。
+"会在清晨醒来的时候，下意识想和你说一句早安。",
 
-我从来没想过，一个人的出现，会让原本平淡的日子开始有了期待。
+"会在看到晚霞、遇见有趣的事、吃到好吃的东西时，第一个想分享给你。",
 
-会在清晨醒来的时候，下意识想和你说一句早安；
+"也会在人群里寻找你的身影，因为一个眼神，让心跳乱了节奏。",
 
-会在看到好看的晚霞、遇见有趣的事情、吃到好吃的东西时，第一时间想分享给你；
+"这份喜欢，没有轰轰烈烈，却在细碎日常里慢慢生长。",
 
-也会在人群里，下意识寻找你的身影，然后因为一个眼神、一句回应，让心跳悄悄乱了节奏。
+"你像一束温柔的光。",
 
-这份喜欢，没有轰轰烈烈的开场，也没有刻意制造的浪漫。
+"把原本普通的日子，都染上了期待的颜色。",
 
-它是在一次次聊天里，在一句句关心里，在那些细碎又平常的瞬间里，慢慢生根发芽，然后不知不觉长成了藏不住的在意。
+"我想把所有偏爱和温柔都留给你。",
 
-我喜欢和你聊天时的轻松，喜欢你笑起来时眉眼弯弯的样子，也喜欢那种即使安静下来，也不会觉得尴尬的安心。
+"喜欢你，不是一时兴起。",
 
-你像一束温柔的光，悄悄照进我的生活，把原本普通的日子，都染上了期待的颜色。
+"而是在无数平凡瞬间里，越来越确定的答案。"
 
-我不懂什么才算最完美的爱情，也不会说太多华丽动听的话。
-
-我只知道，我想把所有的温柔和偏爱都留给你，想陪你走过春夏秋冬，想和你一起经历往后平凡却珍贵的每一天。
-
-不用急着回应，也不用因为这些话有压力。
-
-我只是想认认真真地告诉你：
-
-喜欢你这件事，
-
-不是一时兴起，
-
-而是在无数个平凡瞬间里，
-
-越来越确定的答案。
-
-`
+]
 
 </script>
 
 <div class="container">
 
 <img
-class="photo"
-src="photo.jpg">
+src="photo.jpg"
+class="photo">
 
 <div class="title">
 
-菲菲，送给你
+乖乖，送给你
 
 </div>
-
-<div class="card">
 
 <div
-class="text"
-id="content">
+class="textbox"
+id="box">
 
 </div>
 
-</div>
+<div class="tip" id="tip">
 
-<div class="tip">
-
-❤️ 点击页面播放音乐 ❤️
+❤️ 点击屏幕播放音乐 ❤️
 
 </div>
 
@@ -337,15 +266,7 @@ type="audio/mpeg">
 
 <script>
 
-document
-.getElementById(
-"content"
-)
-.innerText =
-CONTENT
-
-document.body
-.addEventListener(
+document.body.addEventListener(
 
 "click",
 
@@ -355,7 +276,7 @@ document
 .getElementById(
 "bgm"
 )
-play()
+.play()
 
 },
 
@@ -363,7 +284,47 @@ play()
 
 )
 
-function createHeart(){
+let index=0
+
+function showSentence(){
+
+const box=
+document.getElementById(
+"box"
+)
+
+box.style.opacity=0
+
+setTimeout(()=>{
+
+box.innerHTML=
+TEXTS[index]
+
+box.style.opacity=1
+
+index++
+
+if(index>=TEXTS.length){
+
+index=0
+
+}
+
+},500)
+
+}
+
+showSentence()
+
+setInterval(
+
+showSentence,
+
+5000
+
+)
+
+function heart(){
 
 let h=
 document.createElement(
@@ -391,29 +352,18 @@ h.style.animationDuration=
 Math.random()*5+
 4+"s"
 
-document.body
-.appendChild(h)
+document.body.appendChild(h)
 
 setTimeout(
-
-()=>{
-
-h.remove()
-
-},
-
+()=>h.remove(),
 8000
-
 )
 
 }
 
 setInterval(
-
-createHeart,
-
+heart,
 260
-
 )
 
 </script>
