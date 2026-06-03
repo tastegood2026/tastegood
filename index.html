@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
 <title>专属心意</title>
 
 <style>
@@ -24,8 +28,8 @@ font-family:"Microsoft YaHei";
 background:
 linear-gradient(
 135deg,
-#f6a9bf,
-#f5bfd0
+#f6a8be,
+#f6c7d3
 );
 
 display:flex;
@@ -52,17 +56,15 @@ align-items:center;
 
 text-align:center;
 
-padding:20px;
-
 width:90%;
 
 }
 
 .photo{
 
-width:180px;
+width:190px;
 
-height:180px;
+height:190px;
 
 border-radius:50%;
 
@@ -71,20 +73,26 @@ object-fit:cover;
 border:6px solid white;
 
 box-shadow:
-0 0 30px rgba(255,255,255,.8);
+0 0 35px rgba(255,255,255,.8);
 
 animation:
-float 3s infinite;
+float 3s infinite ease-in-out;
 
 }
 
 @keyframes float{
 
-0%{transform:translateY(0)}
+0%{
+transform:translateY(0)
+}
 
-50%{transform:translateY(-10px)}
+50%{
+transform:translateY(-10px)
+}
 
-100%{transform:translateY(0)}
+100%{
+transform:translateY(0)
+}
 
 }
 
@@ -92,11 +100,14 @@ float 3s infinite;
 
 margin-top:25px;
 
-font-size:58px;
+font-size:56px;
 
 font-weight:bold;
 
 color:white;
+
+text-shadow:
+0 0 20px rgba(255,255,255,.25);
 
 }
 
@@ -106,9 +117,9 @@ margin-top:35px;
 
 width:min(90%,850px);
 
-padding:35px;
-
 min-height:220px;
+
+padding:35px;
 
 display:flex;
 
@@ -119,15 +130,16 @@ align-items:center;
 border-radius:35px;
 
 background:
+
 rgba(
 255,
 255,
 255,
-0.15
+0.16
 );
 
 backdrop-filter:
-blur(15px);
+blur(16px);
 
 color:white;
 
@@ -140,7 +152,9 @@ font-weight:600;
 text-shadow:
 0 0 10px rgba(0,0,0,.08);
 
-transition:.5s;
+opacity:0;
+
+transition:.6s;
 
 }
 
@@ -148,7 +162,7 @@ transition:.5s;
 
 margin-top:25px;
 
-font-size:20px;
+font-size:22px;
 
 color:white;
 
@@ -160,7 +174,7 @@ position:absolute;
 
 pointer-events:none;
 
-color:#ff5b82;
+color:#ff5a82;
 
 animation:
 rise linear forwards;
@@ -192,13 +206,12 @@ opacity:0;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <script>
-
-const USER_NAME="乖乖"
 
 const TEXTS=[
 
@@ -208,21 +221,29 @@ const TEXTS=[
 
 "会在清晨醒来的时候，下意识想和你说一句早安。",
 
-"会在看到晚霞、遇见有趣的事、吃到好吃的东西时，第一个想分享给你。",
+"会在看到好看的晚霞、遇见有趣的事情、吃到好吃的东西时，第一个想分享给你。",
 
-"也会在人群里寻找你的身影，因为一个眼神，让心跳乱了节奏。",
+"也会在人群里，下意识寻找你的身影，因为一个眼神，让心跳乱了节奏。",
 
-"这份喜欢，没有轰轰烈烈，却在细碎日常里慢慢生长。",
+"这份喜欢，没有轰轰烈烈的开场。",
+
+"却在一次次聊天，一句句关心里。",
+
+"慢慢长成了藏不住的在意。",
 
 "你像一束温柔的光。",
 
-"把原本普通的日子，都染上了期待的颜色。",
+"把原本普通的日子。",
 
-"我想把所有偏爱和温柔都留给你。",
+"都染上了期待的颜色。",
 
-"喜欢你，不是一时兴起。",
+"喜欢你。",
 
-"而是在无数平凡瞬间里，越来越确定的答案。"
+"不是一时兴起。",
+
+"而是在无数平凡瞬间里。",
+
+"越来越确定的答案。"
 
 ]
 
@@ -236,7 +257,7 @@ class="photo">
 
 <div class="title">
 
-乖乖，送给你
+菲菲，送给你
 
 </div>
 
@@ -246,9 +267,11 @@ id="box">
 
 </div>
 
-<div class="tip" id="tip">
+<div
+class="tip"
+id="tip">
 
-❤️ 点击屏幕播放音乐 ❤️
+❤️ 点击屏幕开启 ❤️
 
 </div>
 
@@ -266,39 +289,23 @@ type="audio/mpeg">
 
 <script>
 
-document.body.addEventListener(
-
-"click",
-
-()=>{
-
-document
-.getElementById("bgm")
-.play()
-
-document
-.getElementById("tip")
-.style.display="none"
-
-},
-
-{once:true}
-
-)
-let index=0
-
-function showSentence(){
-
-const box=
+const box =
 document.getElementById(
 "box"
 )
+
+let index=0
+
+let started=false
+
+function showSentence(){
 
 box.style.opacity=0
 
 setTimeout(()=>{
 
 box.innerHTML=
+
 TEXTS[index]
 
 box.style.opacity=1
@@ -315,6 +322,28 @@ index=0
 
 }
 
+document.body.addEventListener(
+
+"click",
+
+()=>{
+
+if(started) return
+
+started=true
+
+document
+.getElementById(
+"tip"
+)
+.style.display="none"
+
+document
+.getElementById(
+"bgm"
+)
+.play()
+
 showSentence()
 
 setInterval(
@@ -322,6 +351,12 @@ setInterval(
 showSentence,
 
 5000
+
+)
+
+},
+
+{once:true}
 
 )
 
