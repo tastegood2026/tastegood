@@ -273,17 +273,18 @@ document.body.addEventListener(
 ()=>{
 
 document
-.getElementById(
-"bgm"
-)
+.getElementById("bgm")
 .play()
+
+document
+.getElementById("tip")
+.style.display="none"
 
 },
 
 {once:true}
 
 )
-
 let index=0
 
 function showSentence(){
