@@ -5,7 +5,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>你在干嘛呀？</title>
+<style>```html id="mobilelove"
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>你在干嘛呀 😊</title>
+
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+body{
+
+height:100vh;
+overflow:hidden;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"PingFang SC",
+sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#ffd9ec,
+#ffeef7,
+#f5e7ff
+);
+
+}
+
+.container{
+
+width:88%;
+max-width:420px;
+
+padding:40px 28px;
+
+border-radius:28px;
+
+background:
+rgba(255,255,255,.78);
+
+backdrop-filter:blur(14px);
+
+text-align:center;
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.08);
+
+}
+
+.title{
+
+font-size:36px;
+font-weight:700;
+
+color:#444;
+
+margin-bottom:18px;
+
+animation:float 3s infinite ease-in-out;
+
+}
+
+.sub{
+
+font-size:17px;
+
+line-height:1.7;
+
+color:#666;
+
+min-height:56px;
+
+margin-bottom:35px;
+
+transition:.5s;
+
+}
+
+button{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:999px;
+
+font-size:18px;
+
+font-weight:600;
+
+background:#ff8fbd;
+
+color:white;
+
+}
+
+button:active{
+
+transform:scale(.96);
+
+}
+
+.heart{
+
+position:fixed;
+
+pointer-events:none;
+
+font-size:22px;
+
+animation:up 2.5s linear forwards;
+
+}
+
+@keyframes up{
+
+to{
+
+transform:
+translateY(-180px)
+scale(1.6);
+
+opacity:0;
+
+}
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:
+translateY(-8px);
+
+}
+
+}
+
+.fade{
+
+animation:fade .8s;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">
+你在干嘛呀 😊
+</div>
+
+<div class="sub" id="text">
+突然有点想知道你现在在忙什么
+</div>
+
+<button id="start">
+点我一下
+</button>
+
+</div>
+
+<audio id="music" loop>
+<source src="music.mp3">
+</audio>
+
+<script>
+
+const btn=
+document.getElementById("start");
+
+const music=
+document.getElementById("music");
+
+const text=
+document.getElementById("text");
+
+btn.onclick=()=>{
+
+music.play();
+
+text.innerHTML=
+"其实就是突然想你了，所以来问问 ❤️";
+
+text.classList.add("fade");
+
+btn.innerHTML=
+"那记得回我消息";
+
+for(let i=0;i<30;i++){
+
+setTimeout(()=>{
+
+let h=
+document.createElement("div");
+
+h.className=
+"heart";
+
+h.innerHTML="❤️";
+
+h.style.left=
+Math.random()*100+"vw";
+
+h.style.bottom=
+"0px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},2500);
+
+},i*100);
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
+```
+
 body{
   margin:0;
   padding:0;
