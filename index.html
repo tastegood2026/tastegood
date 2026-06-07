@@ -16,26 +16,19 @@ user-scalable=no">
 <style>
 
 *{
-
 margin:0;
 padding:0;
-
 box-sizing:border-box;
-
 -webkit-tap-highlight-color:transparent;
-
 }
 
 body{
 
 height:100vh;
-
 overflow:hidden;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
 font-family:
@@ -59,10 +52,9 @@ padding:20px;
 .container{
 
 width:100%;
-
 max-width:420px;
 
-padding:40px 28px;
+padding:42px 28px;
 
 border-radius:30px;
 
@@ -96,15 +88,13 @@ animation:float 3s ease-in-out infinite;
 
 font-size:18px;
 
-line-height:1.7;
+line-height:1.8;
 
 color:#666;
 
 min-height:70px;
 
 margin-bottom:35px;
-
-padding:0 5px;
 
 }
 
@@ -217,12 +207,9 @@ translateY(0);
 
 </div>
 
-<div
-class="sub"
-id="text">
+<div class="sub" id="text">
 
-突然有点想知道
-
+突然有点想知道  
 你现在在忙什么
 
 </div>
@@ -235,8 +222,10 @@ id="text">
 
 </div>
 
-<audio id="music" loop>
-<source src="music.mp3" type="audio/mp4">
+<audio id="music" loop preload="auto">
+
+<source src="music.m4a" type="audio/mp4">
+
 </audio>
 
 <script>
@@ -252,7 +241,21 @@ document.getElementById("text");
 
 btn.onclick=()=>{
 
-music.play();
+music.play()
+
+.then(()=>{
+
+console.log("播放成功");
+
+})
+
+.catch((err)=>{
+
+alert("音乐播放失败");
+
+console.log(err);
+
+});
 
 text.innerHTML=
 
