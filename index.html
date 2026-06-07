@@ -2,10 +2,12 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
 <title>你在干嘛呀</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -13,274 +15,417 @@ box-sizing:border-box;
 }
 
 body{
-width:100%;
-height:100vh;
 overflow:hidden;
+height:100vh;
 font-family:"Microsoft YaHei";
-background:linear-gradient(135deg,#ffd6ea,#f3d1ff,#ffd6d6);
-display:flex;
-justify-content:center;
-align-items:center;
-position:relative;
+background:black;
 }
 
-.bg{
-position:absolute;
+#bg{
+position:fixed;
 width:100%;
 height:100%;
+object-fit:cover;
+filter:blur(6px) brightness(.45);
+z-index:-2;
+}
+
+#overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.15);
+z-index:-1;
+}
+
+#stars{
+
+position:fixed;
+
+width:100%;
+
+height:100%;
+
 overflow:hidden;
+
+pointer-events:none;
 }
 
-.heart{
+.star{
+
 position:absolute;
-color:#ff5c9f;
-animation:float 8s linear infinite;
-opacity:.7;
+
+color:white;
+
+opacity:.8;
+
+animation:fall linear forwards;
 }
 
-@keyframes float{
-0%{
-transform:translateY(100vh) scale(.5);
+@keyframes fall{
+
+from{
+
+transform:translateY(-50px);
+
 opacity:0;
 }
-50%{
+
+20%{
+
 opacity:1;
 }
-100%{
-transform:translateY(-120px) scale(1.4);
+
+to{
+
+transform:translateY(110vh);
+
 opacity:0;
 }
+
 }
 
-.card{
-width:88%;
-max-width:360px;
-background:rgba(255,255,255,.86);
-padding:35px 25px;
-border-radius:25px;
-backdrop-filter:blur(10px);
-box-shadow:0 10px 35px rgba(0,0,0,.15);
+.container{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
 text-align:center;
-z-index:10;
 }
 
-.title{
-font-size:38px;
-font-weight:bold;
-color:#333;
-margin-bottom:15px;
-animation:pulse 2s infinite;
+.avatar{
+
+width:130px;
+
+height:130px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+border:4px solid rgba(255,255,255,.9);
+
+box-shadow:0 0 30px rgba(255,255,255,.5);
+
+animation:breath 2.8s infinite;
 }
 
-@keyframes pulse{
-0%,100%{transform:scale(1)}
-50%{transform:scale(1.06)}
+.avatar img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+}
+
+@keyframes breath{
+
+50%{
+
+transform:scale(1.06);
+
+}
+
 }
 
 #text{
-font-size:24px;
-min-height:70px;
-color:#555;
+
+margin-top:35px;
+
+font-size:30px;
+
+font-weight:bold;
+
 line-height:1.6;
-margin:20px 0;
+
+color:white;
+
+min-height:100px;
+
+padding:0 20px;
+
+opacity:0;
+
+transition:1s;
+
+text-shadow:0 0 15px rgba(255,255,255,.4);
+
 }
 
-button{
+#start{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:black;
+
+z-index:100;
+}
+
+#btn{
+
+padding:18px 45px;
+
+font-size:22px;
+
 border:none;
-padding:15px 35px;
-border-radius:50px;
-background:#ff6cae;
-color:#fff;
-font-size:18px;
-cursor:pointer;
-}
 
-.bigHeart{
-font-size:90px;
-margin-top:15px;
-animation:beat 1s infinite;
-display:none;
-}
+border-radius:999px;
 
-@keyframes beat{
-0%,100%{transform:scale(1)}
-50%{transform:scale(1.2)}
+background:#ff7eb6;
+
+color:white;
+
+box-shadow:0 0 20px rgba(255,126,182,.5);
+
 }
 
 .tip{
+
 margin-top:18px;
-font-size:20px;
-color:#ff4d94;
-display:none;
+
+color:white;
+
+opacity:.8;
+
+font-size:14px;
 }
 
-.musicBtn{
-position:fixed;
-right:18px;
-bottom:20px;
-width:60px;
-height:60px;
-border-radius:50%;
-background:#ff6cae;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:26px;
-color:white;
-z-index:99;
-box-shadow:0 5px 20px rgba(0,0,0,.2);
+@media(max-width:600px){
+
+.avatar{
+
+width:115px;
+
+height:115px;
+
 }
+
+#text{
+
+font-size:24px;
+
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="bg" id="bg"></div>
+<img src="bg.jpg" id="bg">
 
-<div class="card">
+<div id="overlay"></div>
 
-<div class="title">你在干嘛呀 😊</div>
+<div id="stars"></div>
+
+<div id="start">
+
+<div>
+
+<button id="btn">
+
+点一下 ❤️
+
+</button>
+
+<div class="tip">
+
+偷偷给你准备了点东西
+
+</div>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="avatar">
+
+<img src="avatar.jpg">
+
+</div>
 
 <div id="text"></div>
 
-<button id="btn">
-点我一下
-</button>
-
-<div class="bigHeart" id="heart">
-❤️
-</div>
-
-<div class="tip" id="tip">
-其实就是突然想你了，所以来问问 ❤️
-</div>
-
-</div>
-
-<div class="musicBtn" id="musicBtn">
-🎵
 </div>
 
 <audio id="music" loop>
+
 <source src="music.mp3" type="audio/mpeg">
+
 </audio>
 
 <script>
 
-const words=[
-"现在在忙吗",
-"有没有偷偷摸鱼",
-"我刚刚突然想到你",
-"所以跑来问问",
-"老实说",
-"其实有点想你"
-];
+const lines=[
 
-let i=0;
-const text=document.getElementById("text");
+"你在干嘛呀",
 
-function typeWord(){
+"我有点想你了",
 
-if(i>=words.length)return;
+"我猜你现在应该睡着了",
 
-let str=words[i];
-let j=0;
+"看你上班好累",
 
-text.innerHTML="";
+"睡着很正常",
 
-let timer=setInterval(()=>{
+"我也在忙呢",
 
-text.innerHTML+=str[j];
-j++;
+"但是还是想问问你有没有在忙",
 
-if(j>=str.length){
+"还有就是",
 
-clearInterval(timer);
+"有没有想过我",
+
+"没事没事",
+
+"我随便说说的",
+
+"miss you ❤️"
+
+]
+
+const text=document.getElementById("text")
+
+const music=document.getElementById("music")
+
+let i=0
+
+function typeLine(line,index=0){
+
+if(index===0){
+
+text.innerHTML=""
+
+text.style.opacity=1
+
+}
+
+if(index<line.length){
+
+text.innerHTML += line[index]
 
 setTimeout(()=>{
 
-i++;
-typeWord();
+typeLine(line,index+1)
 
-},1800);
+},180)
+
+}else{
+
+if(i===lines.length-1){
+
+moreStars()
+
+return
 
 }
 
-},150);
+setTimeout(()=>{
+
+text.style.opacity=0
+
+setTimeout(()=>{
+
+i++
+
+typeLine(lines[i])
+
+},900)
+
+},2200)
 
 }
 
-typeWord();
+}
+
+function createStars(){
+
+setInterval(()=>{
+
+const star=document.createElement("div")
+
+star.className="star"
+
+star.innerHTML=Math.random()>0.5?"✦":"✧"
+
+star.style.left=Math.random()*100+"vw"
+
+star.style.fontSize=(Math.random()*12+8)+"px"
+
+star.style.animationDuration=(Math.random()*5+4)+"s"
+
+document.getElementById("stars").appendChild(star)
+
+setTimeout(()=>{
+
+star.remove()
+
+},9000)
+
+},180)
+
+}
+
+function moreStars(){
+
+setInterval(()=>{
+
+const star=document.createElement("div")
+
+star.className="star"
+
+star.innerHTML="✨"
+
+star.style.left=Math.random()*100+"vw"
+
+star.style.fontSize="20px"
+
+star.style.animationDuration="4s"
+
+document.getElementById("stars").appendChild(star)
+
+setTimeout(()=>{
+
+star.remove()
+
+},5000)
+
+},120)
+
+}
 
 document.getElementById("btn").onclick=()=>{
 
-document.getElementById("heart").style.display="block";
-document.getElementById("tip").style.display="block";
+document.getElementById("start").remove()
 
-};
+music.play()
 
-const music=document.getElementById("music");
+createStars()
 
-document.getElementById("musicBtn").onclick=()=>{
-
-music.play();
-
-document.getElementById("musicBtn").style.display="none";
-
-};
-
-function createHeart(){
-
-const h=document.createElement("div");
-
-h.className="heart";
-
-h.innerHTML="❤";
-
-h.style.left=Math.random()*100+"vw";
-
-h.style.fontSize=(15+Math.random()*30)+"px";
-
-h.style.animationDuration=
-(5+Math.random()*5)+"s";
-
-document.getElementById("bg").appendChild(h);
-
-setTimeout(()=>{
-
-h.remove();
-
-},10000);
+typeLine(lines[0])
 
 }
-
-setInterval(createHeart,400);
-
-document.body.addEventListener("click",(e)=>{
-
-let heart=document.createElement("div");
-
-heart.innerHTML="💗";
-
-heart.style.position="absolute";
-
-heart.style.left=e.clientX+"px";
-
-heart.style.top=e.clientY+"px";
-
-heart.style.fontSize="28px";
-
-heart.style.pointerEvents="none";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-
-heart.remove();
-
-},800);
-
-});
 
 </script>
 
